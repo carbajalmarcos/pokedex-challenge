@@ -2,11 +2,13 @@ import express, { Application } from "express";
 import swaggerUI from "swagger-ui-express";
 import swaggerJsDoc from "swagger-jsdoc";
 import path from "path";
+import dotenv from 'dotenv'
+dotenv.config()
 
+const port = process.env.PORT || 3000;
 import { errorHandler } from "./middlewares";
 import pokemon from "../src/routes/pokemon";
 
-const port = 3000;
 const swaggerSpec = {
   definition: {
     openapi: "3.0.0",

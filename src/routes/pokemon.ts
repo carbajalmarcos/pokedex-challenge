@@ -1,5 +1,5 @@
-import express, { Request, Response, NextFunction } from "express";
-import * as utils from "../utils/pokedexRequests";
+import express, { Request, Response, NextFunction } from 'express';
+import * as utils from '../utils/pokedexRequests';
 const router = express.Router();
 
 /**
@@ -86,14 +86,14 @@ const router = express.Router();
  *                 summary: An example of pokemon list
  *                 value:
  *                   count: 1118
- *                   next: "https://pokeapi.co/api/v2/pokemon?offset=2&limit=1"
- *                   previous: "https://pokeapi.co/api/v2/pokemon?offset=0&limit=1"
+ *                   next: 'https://pokeapi.co/api/v2/pokemon?offset=2&limit=1'
+ *                   previous: 'https://pokeapi.co/api/v2/pokemon?offset=0&limit=1'
  *                   results:
- *                     - name: "ivysaur"
- *                       photo: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png"
- *                       type: "grass,poison"
+ *                     - name: 'ivysaur'
+ *                       photo: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png'
+ *                       type: 'grass,poison'
  *                       weight: 130
- *                       abilities: "overgrow,chlorophyll"
+ *                       abilities: 'overgrow,chlorophyll'
  *     parameters:
  *       - name: limit
  *         in: query
@@ -106,15 +106,15 @@ const router = express.Router();
  *         schema:
  *           type: integer
  */
-router.get("/list", async (req: Request, res: Response, next: NextFunction) => {
+router.get('/list', async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (
       !(
-        typeof req.query.limit === "string" &&
-        typeof req.query.offset === "string"
+        typeof req.query.limit === 'string' &&
+        typeof req.query.offset === 'string'
       )
     )
-      throw new Error("missing limit/offset params");
+      throw new Error('missing limit/offset params');
     const response = await utils.getPokemonList(
       req.query.limit,
       req.query.offset
@@ -171,11 +171,11 @@ router.get("/list", async (req: Request, res: Response, next: NextFunction) => {
  *                   basicInformation:
  *                     name: ditto
  *                     photo: https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png
- *                     type: "normal"
+ *                     type: 'normal'
  *                     weight: 40,
- *                     abilities: "limber,imposter"
- *                   movements: "transform"
- *                   description: "Puede alterar por completo su estructura celular para\nemular cualquier objeto que vea."
+ *                     abilities: 'limber,imposter'
+ *                   movements: 'transform'
+ *                   description: 'Puede alterar por completo su estructura celular para\nemular cualquier objeto que vea.'
  *     parameters:
  *       - name: name
  *         in: path
@@ -186,7 +186,7 @@ router.get("/list", async (req: Request, res: Response, next: NextFunction) => {
  * 
 */
 router.get(
-  "/details/:name",
+  '/details/:name',
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       // getting pokemon details
@@ -198,7 +198,7 @@ router.get(
 
       const description = pokemonSpecies.data.flavor_text_entries.find(
         (e: { flavor_text: string; language: { name: string } }) =>
-          e.language.name === "es"
+          e.language.name === 'es'
       );
 
       const basicInformation = {

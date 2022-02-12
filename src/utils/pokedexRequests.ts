@@ -1,5 +1,5 @@
-import axios from "axios";
-import { POKE_API_URL_BASE } from "./constants";
+import axios from 'axios';
+import { POKE_API_URL_BASE } from './constants';
 
 export const getPokemonList = async (limit: string, offset: string) => {
   return await axios.get<{

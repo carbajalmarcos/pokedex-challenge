@@ -17,7 +17,7 @@ const swaggerSpec = {
       title: "Simple Pokedex Api",
       version: "1.0.0",
     },
-    servers: [{ url: `http://localhost:${port}` }],
+    servers: [{ url: process.env.DEV ? `http://localhost:${port}` : 'https://pokedex-api-challenge.herokuapp.com/' }],
   },
   apis: [`${path.join(__dirname, "./routes/*.*")}`],
 };

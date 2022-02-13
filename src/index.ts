@@ -23,6 +23,7 @@ const swaggerSpec = {
 };
 // Boot express
 const app: Application = express();
+app.use(express.urlencoded({ extended: false })); 
 app.use(cors());
 app.use(pokemon);
 app.use(errorHandler);

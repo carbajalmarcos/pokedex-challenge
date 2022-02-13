@@ -17,13 +17,21 @@ const swaggerSpec = {
       title: "Simple Pokedex Api",
       version: "1.0.0",
     },
-    servers: [{ url: process.env.DEV ? `http://localhost:${port}` : 'https://pokedex-api-challenge.herokuapp.com/' }],
+    servers: [
+      {
+        url: process.env.DEV
+          ? `http://localhost:${port}`
+          : "https://pokedex-api-challenge.herokuapp.com/",
+      },
+    ],
   },
   apis: [`${path.join(__dirname, "./routes/*.*")}`],
 };
+
 // Boot express
+
 const app: Application = express();
-app.use(express.urlencoded({ extended: false })); 
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 app.use(pokemon);
 app.use(errorHandler);

@@ -1,5 +1,5 @@
-import express, { Request, Response, NextFunction } from 'express';
-import * as utils from '../utils/pokedexRequests';
+import express, { Request, Response, NextFunction } from "express";
+import * as utils from "../utils/pokedexRequests";
 const router = express.Router();
 
 /**
@@ -106,15 +106,15 @@ const router = express.Router();
  *         schema:
  *           type: integer
  */
-router.get('/list', async (req: Request, res: Response, next: NextFunction) => {
+router.get("/list", async (req: Request, res: Response, next: NextFunction) => {
   try {
     if (
       !(
-        typeof req.query.limit === 'string' &&
-        typeof req.query.offset === 'string'
+        typeof req.query.limit === "string" &&
+        typeof req.query.offset === "string"
       )
     )
-      throw new Error('missing limit/offset params');
+      throw new Error("missing limit/offset params");
     const response = await utils.getPokemonList(
       req.query.limit,
       req.query.offset
@@ -183,10 +183,10 @@ router.get('/list', async (req: Request, res: Response, next: NextFunction) => {
  *         required: true
  *         schema:
  *           type: string
- * 
-*/
+ *
+ */
 router.get(
-  '/details/:name',
+  "/details/:name",
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       // getting pokemon details
@@ -198,7 +198,7 @@ router.get(
 
       const description = pokemonSpecies.data.flavor_text_entries.find(
         (e: { flavor_text: string; language: { name: string } }) =>
-          e.language.name === 'es'
+          e.language.name === "es"
       );
 
       const basicInformation = {
